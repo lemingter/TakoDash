@@ -14,9 +14,20 @@ public class CookieController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player")
+        ScoreController scoreController = FindObjectOfType<ScoreController>();
+        
+        if (collision.tag == "Player")
         {
-            FindObjectOfType<ScoreController>().increaseScore();
+            scoreController.increaseScore();
+            FindObjectOfType<GameController>().HitCookie();
+        }
+        else if (collision.tag == "End")
+        {
+            scoreController.breakCombo();
+        }
+        else
+        {
+            return;
         }
 
         Destroy(gameObject);

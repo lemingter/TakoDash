@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     private int pos;
 
-    public GameObject[] spawnPoints;
+    public GameObject[] sprites;
 
     // Start is called before the first frame update
     void Start()
@@ -29,21 +29,19 @@ public class PlayerController : MonoBehaviour
 
     public void goUp()
     {
-        if(pos > 0)
+        if(pos != 2)
         {
-            pos--;
-
-            transform.position = new Vector3(-7, spawnPoints[pos].transform.position.y, 0);
+            sprites[pos++].SetActive(false);
+            sprites[pos].SetActive(true);
         }
     }
 
     public void goDown()
     {
-        if(pos + 1 < spawnPoints.Length)
+        if (pos != 0)
         {
-            pos++;
-
-            transform.position = new Vector3(-7, spawnPoints[pos].transform.position.y, 0);
+            sprites[pos--].SetActive(false);
+            sprites[pos].SetActive(true);
         }
     }
 }
