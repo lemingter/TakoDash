@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Mime;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -19,6 +21,13 @@ public class PauseController : MonoBehaviour
 
     public HighScores highScores;
 
+    private GameController gameController;
+
+    private void Start()
+    {
+        gameController = FindObjectOfType<GameController>();
+    }
+
     public void PauseGame() {
         Time.timeScale = 0;
         panelPause.SetActive(true);
@@ -33,7 +42,7 @@ public class PauseController : MonoBehaviour
 
     public void EndGame()
     {
-        FindObjectOfType<GameController>().GenerateScores();
+        gameController.GenerateScores();
 
         accuracySprite.sprite = scoreSprites[highScores.maxAccuracyRating];
         comboSprite.sprite = scoreSprites[highScores.maxComboRating];

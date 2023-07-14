@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f45221fa7e77149b7a9d16d663f167, type: 3}
   m_Name: Level 3 Scores
   m_EditorClassIdentifier: 
-  scores: 
+  maxScore: 0
+  maxCombo: 0
+  maxComboRating: 6
+  maxAccuracyRating: 6
+  maxClearingRating: 6

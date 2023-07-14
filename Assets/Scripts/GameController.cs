@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
     public GameObject[] spawnPoints;
     public HighScores highScore;
     private ScoreController currentScore;
+    private PauseController pauseController;
 
     private float spawnTimer;
     private float timeToSpawn;
@@ -30,6 +31,7 @@ public class GameController : MonoBehaviour
         cookiesGenerated = 0;
 
         currentScore = FindObjectOfType<ScoreController>();
+        pauseController = FindObjectOfType<PauseController>();
     }
 
     // Update is called once per frame
@@ -76,7 +78,7 @@ public class GameController : MonoBehaviour
 
                 GenerateScores();
                 
-                SceneManager.LoadScene("Main Menu");
+                pauseController.EndGame();
             }
         }
     }
@@ -87,7 +89,7 @@ public class GameController : MonoBehaviour
         int accuracyRating;
         int clearingRating;
 
-        float aux = (float)currentScore.combo / cookiesGenerated;
+        float aux = (float)currentScore.maxCombo / cookiesGenerated;
 
         if (aux >= 0.95)
         {
@@ -101,9 +103,21 @@ public class GameController : MonoBehaviour
         {
             comboRating = 2;
         }
-        else
+        else if (aux < 0.80 && aux >= 0.70)
         {
             comboRating = 3;
+        }
+        else if (aux < 0.70 && aux >= 0.60)
+        {
+            comboRating = 4;
+        }
+        else if (aux < 0.60 && aux >= 0.50)
+        {
+            comboRating = 5;
+        }
+        else 
+        {
+            comboRating = 6;
         }
 
         aux = (float)cookiesHit / cookiesGenerated;
@@ -120,9 +134,21 @@ public class GameController : MonoBehaviour
         {
             accuracyRating = 2;
         }
-        else
+        else if (aux < 0.80 && aux >= 0.70)
         {
             accuracyRating = 3;
+        }
+        else if (aux < 0.70 && aux >= 0.60)
+        {
+            accuracyRating = 4;
+        }
+        else if (aux < 0.60 && aux >= 0.50)
+        {
+            accuracyRating = 5;
+        }
+        else 
+        {
+            accuracyRating = 6;
         }
 
         aux = 1 - (songDuration / maxSongDuration);
@@ -139,9 +165,21 @@ public class GameController : MonoBehaviour
         {
             clearingRating = 2;
         }
-        else
+        else if (aux < 0.80 && aux >= 0.70)
         {
             clearingRating = 3;
+        }
+        else if (aux < 0.70 && aux >= 0.60)
+        {
+            clearingRating = 4;
+        }
+        else if (aux < 0.60 && aux >= 0.50)
+        {
+            clearingRating = 5;
+        }
+        else 
+        {
+            clearingRating = 6;
         }
 
         if (highScore.maxComboRating > comboRating)

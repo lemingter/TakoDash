@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxScore: 0
   maxCombo: 0
-  maxComboRating: 3
-  maxAccuracyRating: 3
-  maxClearingRating: 3
+  maxComboRating: 6
+  maxAccuracyRating: 6
+  maxClearingRating: 6
